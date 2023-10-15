@@ -54,6 +54,8 @@ export class ReadingListEffects implements OnInitEffects {
     )
   );
 
+  
+
   ngrxOnInitEffects() {
     return ReadingListActions.init();
   }
