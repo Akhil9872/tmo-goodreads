@@ -16,7 +16,7 @@ export class ReadingListComponent {
     this.store.dispatch(removeFromReadingList({ item }));
   }
 
-  finsihFromReadingList(item) {
+  finishFromReadingList(item) {
     this.store.dispatch(removeFromFinishList({ item }));
   }
  

@@ -29,9 +29,16 @@ export class ReadingListService {
     });
   }
 
-  async finishBook(id: string): Promise<void> {
+  async finishBook(i:ReadingListItem): Promise<void> {
+   
     this.storage.update(list => {
-      return list.filter(x => x.bookId !== id);
+      let now = new Date();
+      let readinglistItem: ReadingListItem;
+      readinglistItem.bookId = i.bookId;
+      readinglistItem.finished = !i.finished;
+      readinglistItem.finishedDate =now.toDateString();
+      return readinglistItem;
     });
+
   }
 }
