@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getReadingList, removeFromFinishList, removeFromReadingList } from '@tmo/books/data-access';
+import { getReadingList, finishBookReadingList, removeFromReadingList } from '@tmo/books/data-access';
+import { ReadingListItem } from '@tmo/shared/models';
+
 
 @Component({
   selector: 'tmo-reading-list',
@@ -13,11 +15,19 @@ export class ReadingListComponent {
   constructor(private readonly store: Store) {}
 
   removeFromReadingList(item) {
-    this.store.dispatch(removeFromReadingList({ item }));
+    
+
+    this.store.dispatch(removeFromReadingList( {item} ));
+    //const snackBarRef = this._snackBar.open("Removed from  Reading List","Undo", { duration: 3000 });
+    //snackBarRef.onAction().subscribe(()=>this.store.dispatch(addToReadingList({ book })) )
   }
 
-  finishFromReadingList(item) {
-    this.store.dispatch(removeFromFinishList({ item }));
+  finishFromReadingList(test:ReadingListItem) {
+    let now = new Date();
+    let item : ReadingListItem = {bookId:test.bookId,...test};
+    item.finished = true;
+    item.finishedDate =now.toDateString();
+    this.store.dispatch(finishBookReadingList({item} ));
   }
  
 }

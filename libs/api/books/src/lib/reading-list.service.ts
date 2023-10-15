@@ -32,12 +32,9 @@ export class ReadingListService {
   async finishBook(i:ReadingListItem): Promise<void> {
    
     this.storage.update(list => {
-      let now = new Date();
-      let readinglistItem: ReadingListItem;
-      readinglistItem.bookId = i.bookId;
-      readinglistItem.finished = !i.finished;
-      readinglistItem.finishedDate =now.toDateString();
-      return readinglistItem;
+      list = list.filter(x => x.bookId !== i.bookId);
+      list.push(i);
+      return list;
     });
 
   }

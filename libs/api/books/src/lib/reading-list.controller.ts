@@ -21,7 +21,7 @@ export class ReadingListController {
     return await this.readingList.removeBook(params.id);
   }
 
-@Put('/api/reading-list/:id/finished')
+@Put('/reading-list/:id/finished')
 async finishFromReadingList(@Body() item: ReadingListItem){
   return await this.readingList.finishBook(item);
 }
